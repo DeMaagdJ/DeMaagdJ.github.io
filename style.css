@@ -1,0 +1,70 @@
+/* Grid container setup */
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr; /* Define the width of the columns */
+  grid-template-rows: auto auto; /* Define rows to adjust automatically based on content */
+  grid-template-areas: 
+    "dragndropContainer map map"
+    "dragndropContainer data data"; /* Define areas for the grid */
+  gap: 10px; /* Optional: Add some spacing between the grid items */
+  height: 100vh; /* Set the height to fill the viewport */
+}
+
+/* Define the grid areas */
+.dragndropContainer {
+  grid-area: dragndropContainer;
+  background-color: whitesmoke;
+  padding: 1rem;
+  margin-top: 1rem;
+  opacity: 1;
+}
+
+#map {
+  grid-area: map;
+  background-color: #e0e0e0; /* Example background color for visibility */
+  height: 100%; /* Ensure the map div takes up the full height of the area */
+}
+
+#data {
+  grid-area: data;
+  background-color: #f0f0f0; /* Example background color for visibility */
+  padding: 1rem; /* Add padding to the data area */
+}
+
+/* Draggable item styling */
+.draggable {
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid black;
+  cursor: grab;
+}
+
+.draggable.dragging {
+  opacity: 0.5;
+}
+
+/* Media Query for iPhone 12 (and similar devices) */
+@media only screen and (max-width: 390px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+    grid-template-rows: auto auto auto; /* Stack the rows */
+    grid-template-areas: 
+      "dragndropContainer"
+      "map"
+      "data"; /* Stack all elements vertically */
+  }
+
+  #map {
+    height: 300px; /* Limit the height of the map on small screens */
+  }
+
+  .custom-marker {
+    /* Additional custom styles for the marker */
+    border-radius: 50%;
+    background-color: blue;
+    padding: 4px;
+    box-shadow: 0 0 5px rgba(73, 33, 138, 0.3);
+  }
+  
+  
+}
