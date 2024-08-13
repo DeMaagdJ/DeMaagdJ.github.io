@@ -8,6 +8,8 @@
     "dragndropContainer data data"; /* Define areas for the grid */
   gap: 10px; /* Optional: Add some spacing between the grid items */
   height: 100vh; /* Set the height to fill the viewport */
+  width: 100vw; /* Ensure the grid container fills the viewport width */
+  overflow: hidden; /* Prevent overflow issues */
 }
 
 /* Define the grid areas */
@@ -43,8 +45,8 @@
   opacity: 0.5;
 }
 
-/* Media Query for iPhone 12 (and similar devices) */
-@media only screen and (max-width: 390px) {
+/* Media Query for iPhone XR (and similar devices) */
+@media only screen and (max-width: 414px) {
   .grid-container {
     grid-template-columns: 1fr; /* Single column layout for small screens */
     grid-template-rows: auto auto auto; /* Stack the rows */
@@ -52,6 +54,7 @@
       "dragndropContainer"
       "map"
       "data"; /* Stack all elements vertically */
+    height: auto; /* Allow the grid to grow as needed */
   }
 
   #map {
@@ -65,6 +68,4 @@
     padding: 4px;
     box-shadow: 0 0 5px rgba(73, 33, 138, 0.3);
   }
-  
-  
 }
