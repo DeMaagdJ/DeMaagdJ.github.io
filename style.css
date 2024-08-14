@@ -1,15 +1,14 @@
 /* Grid container setup */
 .grid-container {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr; /* Define the width of the columns */
-  grid-template-rows: auto auto; /* Define rows to adjust automatically based on content */
+  grid-template-columns: 1fr; /* Single column for the entire width */
+  grid-template-rows: auto 1fr; /* Draggable container on top, map below */
   grid-template-areas: 
-    "dragndropContainer map map"
-    "dragndropContainer data data"; /* Define areas for the grid */
+    "dragndropContainer"
+    "map"; /* Define areas for the grid */
   gap: 10px; /* Optional: Add some spacing between the grid items */
   height: 100vh; /* Set the height to fill the viewport */
   width: 100vw; /* Ensure the grid container fills the viewport width */
-  overflow: hidden; /* Prevent overflow issues */
 }
 
 /* Define the grid areas */
@@ -17,20 +16,16 @@
   grid-area: dragndropContainer;
   background-color: whitesmoke;
   padding: 1rem;
-  margin-top: 1rem;
   opacity: 1;
+  z-index: 10; /* Ensure it is displayed above the map */
 }
 
 #map {
   grid-area: map;
   background-color: #e0e0e0; /* Example background color for visibility */
   height: 100%; /* Ensure the map div takes up the full height of the area */
-}
-
-#data {
-  grid-area: data;
-  background-color: #f0f0f0; /* Example background color for visibility */
-  padding: 1rem; /* Add padding to the data area */
+  position: relative;
+  z-index: 1; /* Map is below the draggable container */
 }
 
 /* Draggable item styling */
@@ -49,16 +44,15 @@
 @media only screen and (max-width: 414px) {
   .grid-container {
     grid-template-columns: 1fr; /* Single column layout for small screens */
-    grid-template-rows: auto auto auto; /* Stack the rows */
+    grid-template-rows: auto 1fr; /* Draggable container on top, map below */
     grid-template-areas: 
       "dragndropContainer"
-      "map"
-      "data"; /* Stack all elements vertically */
+      "map"; /* Keep the layout vertical */
     height: auto; /* Allow the grid to grow as needed */
   }
 
   #map {
-    height: 300px; /* Limit the height of the map on small screens */
+    height: calc(100vh - 100px); /* Adjust the height of the map */
   }
 
   .custom-marker {
